@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dash.css') }}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2>Welcome to the Dashboard</h2>
+        <p>You are successfully logged in!</p>
+
+        <!-- Buttons for different functionalities -->
+        <div class="button-container">
+            <a href="/consoled" class="dashboard-button">Console</a>
+            <a href="/directory_listing" class="dashboard-button">Directory Listing</a>
+            <a href="/download" class="dashboard-button">Download Files</a>
+            <a href="/upload" class="dashboard-button">Upload Files</a>
+        </div>
+
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+</body>
+</html>

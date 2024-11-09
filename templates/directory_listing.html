@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directory Listing</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2>Directory Listing</h2>
+        
+        {% if current_dir %}
+            <h3>Current Directory: /{{ current_dir }}</h3>
+        {% else %}
+            <h3>Current Directory: /</h3>
+        {% endif %}
+        
+        <h4>Directories:</h4>
+        <ul>
+            {% for directory in directories %}
+                <li><a href="{{ url_for('directory_listing', subdir=current_dir + '/' + directory) }}">{{ directory }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <h4>Files:</h4>
+        <ul>
+            {% for file in files %}
+                <li>
+                    <!-- When the user clicks a file, it will trigger the download -->
+                    <a href="{{ url_for('download_files', filename=current_dir.replace('/','%2f') + '%2f' + file) }}">{{ file }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+    </div>
+</body>
+</html>

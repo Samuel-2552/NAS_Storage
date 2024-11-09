@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console</title>
+</head>
+<body>
+    <h1>Console</h1>
+    
+    {% if not console_access %}
+    <form method="POST">
+        <label for="console_password">Enter Console Password:</label>
+        <input type="password" id="console_password" name="console_password" required>
+        <button type="submit">Submit</button>
+    </form>
+    {% else %}
+    <h2>Command Line</h2>
+    <form method="POST" action="{{ url_for('run_command') }}">
+        <label for="command">Enter Command:</label>
+        <input type="text" id="command" name="command" required>
+        <button type="submit">Run Command</button>
+    </form>
+
+    {% if output %}
+        <h3>Command Output:</h3>
+        <pre>{{ output }}</pre>
+    {% endif %}
+    {% endif %}
+    
+    <br>
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</body>
+</html>
